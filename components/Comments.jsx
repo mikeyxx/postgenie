@@ -1,23 +1,11 @@
-"use client";
-
 import moment from "moment";
-import { useState, useEffect } from "react";
+
 import parse from "html-react-parser";
 
 import { getComments } from "@/services";
 
-function Comments({ slug }) {
-  const [comments, setComments] = useState([]);
-
-  const fetchComments = async () => {
-    const data = await getComments(slug);
-
-    setComments(data);
-  };
-
-  useEffect(() => {
-    fetchComments();
-  }, []);
+async function Comments({ slug }) {
+  const comments = await getComments(slug);
 
   return (
     <>

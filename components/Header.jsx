@@ -1,16 +1,10 @@
-"use client";
-
 import Link from "next/link";
 
-import { useState, useEffect } from "react";
 import { getCategories } from "@/services";
 
-function Header() {
-  const [categories, setCategories] = useState([]);
+async function Header() {
+  const categories = await getCategories();
 
-  useEffect(() => {
-    getCategories().then((newCategories) => setCategories(newCategories));
-  }, []);
   return (
     <header className="container mx-auto px-10 mb-8">
       <nav className="border-b w-full inline-block border-blue-400 py-8">

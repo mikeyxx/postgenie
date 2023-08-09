@@ -1,17 +1,14 @@
 import PageElements from "@/components/PageElements";
 import FeaturedPosts from "@/sections/FeaturedPosts";
+import { getPosts } from "@/services";
 
-export default function Home() {
+export default async function Home() {
+  const posts = await getPosts();
+
   return (
     <main className="container mx-auto px-10 mb-8 ">
       <FeaturedPosts />
-      <PageElements />
+      <PageElements posts={posts} />
     </main>
   );
 }
-
-// Fetch data at build time
-// export const getStaticProps = async () => {
-//   const posts = (await getPosts()) || [];
-//   return { props: { posts } };
-// };

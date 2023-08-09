@@ -11,7 +11,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
-        <title>PostGenie Blog</title>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
       </Head>
       <body>
         <Header />

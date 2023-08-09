@@ -1,21 +1,8 @@
-"use client";
-
-import { Categories, CategoryPost, PostWidget } from "@/components";
+import { Categories, CategoryPost } from "@/components";
 import { getCategoryPost } from "@/services";
-import { useState, useEffect } from "react";
 
-function Category({ params }) {
-  const [postCategory, setPostCategory] = useState([]);
-
-  const fetchCategoryPost = async () => {
-    const data = await getCategoryPost(params.slug);
-
-    setPostCategory(data);
-  };
-
-  useEffect(() => {
-    fetchCategoryPost();
-  }, [params.slug]);
+async function Category({ params }) {
+  const postCategory = await getCategoryPost(params.slug);
 
   return (
     <section className="container mx-auto px-10 mb-8">

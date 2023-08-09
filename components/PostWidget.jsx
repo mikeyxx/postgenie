@@ -1,27 +1,16 @@
-"use client";
-
-import { useState, useEffect } from "react";
-
 import moment from "moment";
 import Link from "next/link";
 import Image from "next/image";
 
 import { getRecentPosts, getSimilarPosts } from "@/services";
 
-function PostWidget({ slug, categories }) {
-  const [relatedPost, setRelatedPost] = useState([]);
-
-  // console.log(categories);
-
-  useEffect(() => {
-    if (slug) {
-      getSimilarPosts(slug, categories).then((result) =>
-        setRelatedPost(result)
-      );
-    } else {
-      getRecentPosts().then((result) => setRelatedPost(result));
-    }
-  }, [slug]);
+async function PostWidget({ slug, categories }) {
+  let relatedPost;
+  if (slug) {
+    relatedPost = await getSimilarPosts(slug, categories);
+  } else {
+    relatedPost = await getRecentPosts();
+  }
 
   // console.log(relatedPost);
   return (

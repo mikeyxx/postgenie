@@ -1,16 +1,9 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
 
 import { getCategories } from "@/services";
 
-function Categories() {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    getCategories().then((newCategories) => setCategories(newCategories));
-  }, []);
+async function Categories() {
+  const categories = await getCategories();
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 mb-8 pb-12">

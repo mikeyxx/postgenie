@@ -1,23 +1,6 @@
-"use client";
-
-import { useState, useEffect } from "react";
-
 import { Categories, PostCard, PostWidget } from ".";
-import { getPosts } from "@/services";
 
-function PageElements() {
-  const [posts, setPosts] = useState([]);
-
-  const getFetchedPost = async () => {
-    const data = await getPosts();
-
-    setPosts(data);
-  };
-
-  useEffect(() => {
-    getFetchedPost();
-  }, []);
-
+function PageElements({ posts }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
       <section className="lg:col-span-8 col-span-1">
